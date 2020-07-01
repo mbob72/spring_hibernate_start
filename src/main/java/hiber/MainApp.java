@@ -3,7 +3,6 @@ package hiber;
 import hiber.config.AppConfig;
 import hiber.model.Car;
 import hiber.model.User;
-import hiber.service.CarService;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -32,7 +31,7 @@ public class MainApp {
          System.out.println();
       }
 
-      User user1 = userService.searchByCarProps("Car1", 5);
+      User user1 = userService.getUserByCarProps("Car1", 5);
       System.out.println(user1.getCar().getId());
 
       context.close();

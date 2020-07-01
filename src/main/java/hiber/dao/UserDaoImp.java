@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -28,8 +29,10 @@ public class UserDaoImp implements UserDao {
 
    public User searchByCarProps(String name, int series) {
       TypedQuery<User> query= sessionFactory
-              .getCurrentSession().createQuery("from User user where user.car.name='"
-                      + name + "' and user.car.series=" + series);
+              .getCurrentSession()
+              .createQuery("from User user where user.car.name = :nameParam and user.car.series = :seriesParam")
+              .setParameterList("nameParam", Collections.singleton(name))
+              .setParameterList("seriesParam", Collections.singleton(series));
       return query.getResultList().get(0);
    }
 
