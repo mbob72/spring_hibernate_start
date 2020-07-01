@@ -4,6 +4,7 @@ import hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.Collections;
@@ -27,7 +28,7 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
 
-   public User searchByCarProps(String name, int series) {
+   public User getUserByCarProps(String name, int series) {
       TypedQuery<User> query= sessionFactory
               .getCurrentSession()
               .createQuery("from User user where user.car.name = :nameParam and user.car.series = :seriesParam")

@@ -22,7 +22,7 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    public User getUserByCarProps(String name, int series) {
-      return userDao.searchByCarProps(name, series);
+      return userDao.getUserByCarProps(name, series);
    }
 
    @Transactional(readOnly = true)
